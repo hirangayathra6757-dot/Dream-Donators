@@ -25,7 +25,16 @@
     nav a:hover{color:var(--accent);}
     .hero{max-width:1200px;margin:40px auto;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;padding:0 20px;}
     .hero-text h1{font-size:40px;margin:0 0 12px;color:var(--accent);}
-    .hero-img{background:url('https://www.google.com/search?q=students+after+disaster&sca_esv=d44b221d688bac1f&udm=2&biw=1366&bih=607&sxsrf=AE3TifOwIsfTNY_p7q--0qq0h01_4QlO0w%3A1765385418340&ei=yqQ5aYzFFITf1e8PyZnMoAw&ved=0ahUKEwiM0oGWvbORAxWEb_UHHckME8QQ4dUDCBI&uact=5&oq=students+after+disaster&gs_lp=Egtnd3Mtd2l6LWltZyIXc3R1ZGVudHMgYWZ0ZXIgZGlzYXN0ZXJI6zRQtQtYpzFwAXgAkAEAmAHTB6ABqxiqAQsyLTMuMS4xLjEuMbgBA8gBAPgBAZgCBqACmw3CAgYQABgHGB7CAgQQABgewgIIEAAYCBgKGB7CAgYQABgIGB7CAgcQIxgnGMkCwgIFEAAYgATCAgYQABgFGB6YAwCIBgGSBwkxLjAuMi4yLjGgB9cbsgcHMi0yLjIuMbgHlA3CBwcyLTMuMi4xyAc8gAgA&sclient=gws-wiz-img#vhid=kBbiKRtWUy87RM&vssid=mosaic') center/cover;width:100%;height:360px;border-radius:var(--radius);box-shadow:var(--shadow);}
+    .hero-img{
+      width:100%;
+      height:360px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      background-size:cover;
+      background-position:center;
+      border:1px solid #ddd;
+      background-image:url('https://images.unsplash.com/photo-1556012018-50c5c0da23b3?auto=format&fit=crop&w=1200&q=80');
+    }
     .btn{padding:12px 20px;background:var(--accent);border-radius:var(--radius);border:0;color:white;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(37,99,235,0.28);transition:.25s;}
     .btn:hover{background:var(--accent2);}
     .card{background:white;border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin:20px auto;}
@@ -40,7 +49,7 @@
 <body>
 <header>
   <div class="nav">
-    <div class="logo">DD</div>
+    <div class="logo">GM</div>
     <nav>
       <a href="#home">Home</a>
       <a href="#donate">Donate</a>
@@ -58,7 +67,7 @@
     </p>
     <button class="btn" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Donate Now</button>
   </div>
-  <div class="hero-img"></div>
+  <div class="hero-img" id="heroImg"></div>
 </section>
 <section id="donate" style="max-width:900px;margin:auto;padding:0 20px">
   <div class="card">
@@ -106,7 +115,11 @@
 </section>
 <footer>© Dream Donators — By GCC Media</footer>
 <script>
-/* JS LOGIC NOT MODIFIED */
+// Ensure hero image loads correctly
+const heroImg = document.getElementById('heroImg');
+if(heroImg){
+  heroImg.style.backgroundImage = "url('https://www.google.com/search?q=students+after+disaster&sca_esv=d44b221d688bac1f&udm=2&biw=1366&bih=607&sxsrf=AE3TifOwIsfTNY_p7q--0qq0h01_4QlO0w%3A1765385418340&ei=yqQ5aYzFFITf1e8PyZnMoAw&ved=0ahUKEwiM0oGWvbORAxWEb_UHHckME8QQ4dUDCBI&uact=5&oq=students+after+disaster&gs_lp=Egtnd3Mtd2l6LWltZyIXc3R1ZGVudHMgYWZ0ZXIgZGlzYXN0ZXJI6zRQtQtYpzFwAXgAkAEAmAHTB6ABqxiqAQsyLTMuMS4xLjEuMbgBA8gBAPgBAZgCBqACmw3CAgYQABgHGB7CAgQQABgewgIIEAAYCBgKGB7CAgYQABgIGB7CAgcQIxgnGMkCwgIFEAAYgATCAgYQABgFGB6YAwCIBgGSBwkxLjAuMi4yLjGgB9cbsgcHMi0yLjIuMbgHlA3CBwcyLTMuMi4xyAc8gAgA&sclient=gws-wiz-img#vhid=kBbiKRtWUy87RM&vssid=mosaic')";
+}
 </script>
 </body>
 </html>
