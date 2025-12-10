@@ -17,33 +17,23 @@
       --shadow:0 10px 30px rgba(0,0,0,0.08);
       font-family:'Poppins', sans-serif;
     }
-    body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text);}
-    header{position:sticky;top:0;padding:14px 20px;background:rgba(255,255,255,0.7);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.4);z-index:50;}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text);display:flex;flex-direction:column;align-items:center;}
+    header{position:sticky;top:0;padding:14px 20px;background:rgba(255,255,255,0.7);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.4);width:100%;z-index:50;}
     .nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;}
     .logo{width:50px;height:50px;border-radius:15px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:white;box-shadow:0 6px 18px rgba(37,99,235,0.3);}
     nav a{text-decoration:none;margin-left:18px;font-weight:600;color:var(--text);}
     nav a:hover{color:var(--accent);}
-    .hero{max-width:1200px;margin:40px auto;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;padding:0 20px;}
-    .hero-text h1{font-size:40px;margin:0 0 12px;color:var(--accent);}
-    .hero-img{
-      width:100%;
-      height:360px;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      background-size:cover;
-      background-position:center;
-      border:1px solid #ddd;
-      background-image:url('https://images.unsplash.com/photo-1556012018-50c5c0da23b3?auto=format&fit=crop&w=1200&q=80');
-    }
-    .btn{padding:12px 20px;background:var(--accent);border-radius:var(--radius);border:0;color:white;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(37,99,235,0.28);transition:.25s;}
+    section{max-width:900px;width:100%;margin:30px auto;}
+    .card{background:white;border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin:20px auto;text-align:center;}
+    .hero-text h1{font-size:36px;margin-bottom:12px;color:var(--accent);text-align:center;}
+    .hero-text p{color:var(--muted);font-size:16px;line-height:1.6;text-align:center;}
+    .btn{padding:12px 20px;background:var(--accent);border-radius:var(--radius);border:0;color:white;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(37,99,235,0.28);transition:.25s;margin-top:12px;}
     .btn:hover{background:var(--accent2);}
-    .card{background:white;border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin:20px auto;}
     label{font-size:14px;font-weight:600;color:var(--text);}
     input,select{width:100%;padding:12px;border-radius:12px;border:1px solid #d9d9d9;margin-top:6px;background:#f9fbff;}
-    .donor-item{display:flex;gap:15px;background:#f7faff;padding:14px;border-radius:var(--radius);align-items:center;box-shadow:0 1px 4px rgba(0,0,0,0.08);}
+    .donor-item{display:flex;gap:15px;background:#f7faff;padding:14px;border-radius:var(--radius);align-items:center;box-shadow:0 1px 4px rgba(0,0,0,0.08);justify-content:center;}
     .avatar{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#93c5fd,#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;}
     footer{margin-top:50px;text-align:center;color:#6b7280;padding:30px;}
-    @media(max-width:900px){.hero{grid-template-columns:1fr}.hero-img{height:260px}}
   </style>
 </head>
 <body>
@@ -59,67 +49,55 @@
     </nav>
   </div>
 </header>
-<section class="hero" id="home">
-  <div class="hero-text">
-    <h1>Be the reason a child smiles again</h1>
-    <p style="color:var(--muted);font-size:16px;line-height:1.6">
-      Your donation of school uniforms, books, shoes, or bags helps students in Sri Lanka continue their education with dignity.
-    </p>
-    <button class="btn" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Donate Now</button>
-  </div>
-  <div class="hero-img" id="heroImg"></div>
+<section id="home" class="hero-text">
+  <h1>Be the reason a child smiles again</h1>
+  <p>Your donation of school uniforms, books, shoes, or bags helps students in Sri Lanka continue their education with dignity.</p>
+  <button class="btn" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Donate Now</button>
 </section>
-<section id="donate" style="max-width:900px;margin:auto;padding:0 20px">
+<section id="donate">
   <div class="card">
-    <h2 style="margin:0 0 12px;color:var(--accent)">Make a Donation</h2>
+    <h2 style="color:var(--accent)">Make a Donation</h2>
     <form id="donationForm">
       <label>Full Name *</label>
       <input id="name" required>
-      <label style="margin-top:14px">Email *</label>
+      <label>Email *</label>
       <input id="email" required>
-      <label style="margin-top:14px">Phone *</label>
+      <label>Phone *</label>
       <input id="phone" required>
-      <label style="margin-top:14px">Donation Type *</label>
+      <label>Donation Type *</label>
       <select id="type">
         <option>Uniforms</option><option>Books</option><option>Shoes</option><option>Bags</option><option>Sponsor</option>
       </select>
-      <label style="margin-top:14px">Quantity / Details</label>
+      <label>Quantity / Details</label>
       <input id="qty" placeholder="e.g. 2 uniforms size 12">
-      <label style="margin-top:14px">Preferred District</label>
+      <label>Preferred District</label>
       <input id="district" placeholder="Colombo">
       <div style="margin-top:14px">
         <input type="checkbox" id="anonymous"> Donate anonymously
       </div>
-      <button class="btn" type="submit" style="margin-top:18px">Submit Donation</button>
+      <button class="btn" type="submit">Submit Donation</button>
       <div id="formMsg" style="margin-top:10px;color:var(--muted);font-size:14px"></div>
     </form>
   </div>
 </section>
-<section id="wall" style="max-width:900px;margin:auto;padding:0 20px">
+<section id="wall">
   <div class="card">
     <h2 style="color:var(--accent)">Recent Donors</h2>
-    <div id="publicWall" class="donor-list" style="margin-top:14px"></div>
+    <div id="publicWall" class="donor-list"></div>
   </div>
 </section>
-<section id="about" style="max-width:900px;margin:auto;padding:0 20px">
+<section id="about">
   <div class="card">
     <h2 style="color:var(--accent)">About Our Mission</h2>
-    <p style="color:var(--muted)">Our mission is to empower students across Sri Lanka by providing essential school supplies and support, ensuring that every child has the opportunity to learn, grow, and thrive, regardless of their economic circumstances. We strive to create a community where education is accessible, and every donation brings hope and opportunity to young learners.</p>
+    <p>Our mission is to empower students across Sri Lanka by providing essential school supplies and support, ensuring that every child has the opportunity to learn, grow, and thrive, regardless of their economic circumstances. We strive to create a community where education is accessible, and every donation brings hope and opportunity to young learners.</p>
   </div>
 </section>
-<section id="contact" style="max-width:900px;margin:auto;padding:0 20px">
+<section id="contact">
   <div class="card">
     <h2 style="color:var(--accent)">Contact Us</h2>
-    <p class="muted">Phone: +94 77 123 4567 | Email: contact@dreamdonators.lk</p>
+    <p>Phone: +94 77 123 4567 | Email: contact@dreamdonators.lk</p>
   </div>
 </section>
 <footer>© Dream Donators — By GCC Media</footer>
-<script>
-// Ensure hero image loads correctly
-const heroImg = document.getElementById('heroImg');
-if(heroImg){
-  heroImg.style.backgroundImage = "url('https://www.google.com/search?q=students+after+disaster&sca_esv=d44b221d688bac1f&udm=2&biw=1366&bih=607&sxsrf=AE3TifOwIsfTNY_p7q--0qq0h01_4QlO0w%3A1765385418340&ei=yqQ5aYzFFITf1e8PyZnMoAw&ved=0ahUKEwiM0oGWvbORAxWEb_UHHckME8QQ4dUDCBI&uact=5&oq=students+after+disaster&gs_lp=Egtnd3Mtd2l6LWltZyIXc3R1ZGVudHMgYWZ0ZXIgZGlzYXN0ZXJI6zRQtQtYpzFwAXgAkAEAmAHTB6ABqxiqAQsyLTMuMS4xLjEuMbgBA8gBAPgBAZgCBqACmw3CAgYQABgHGB7CAgQQABgewgIIEAAYCBgKGB7CAgYQABgIGB7CAgcQIxgnGMkCwgIFEAAYgATCAgYQABgFGB6YAwCIBgGSBwkxLjAuMi4yLjGgB9cbsgcHMi0yLjIuMbgHlA3CBwcyLTMuMi4xyAc8gAgA&sclient=gws-wiz-img#vhid=kBbiKRtWUy87RM&vssid=mosaic')";
-}
-</script>
 </body>
 </html>
