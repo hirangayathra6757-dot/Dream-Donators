@@ -1,174 +1,231 @@
-<!-- index.html — Home page for Dream Donators (ready to upload)
-Replace the firebaseConfig placeholder in firebase.js before enabling admin features.
-Files to include with this index.html in your repo:
-- style.css (paste provided CSS)
-- donate.html
-- help.html
-- admin.html
-- dashboard.html
-- firebase.js (use config from your Firebase console)
-
-This file is intentionally self-contained for the home page and links to the other pages.
--->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dream Donators — By GCC Media</title>
-  <meta name="description" content="Donate uniforms, books, shoes & bags to students in Sri Lanka. Dream Donators by GCC Media." />
-  <style>
-    /* ---------- style.css (core parts included inline for convenience) ---------- */
-    :root{
-      --bg:#f7fbff; --panel:#ffffff; --accent:#2563eb; --accent-2:#3b82f6; --muted:#6b7280; --text:#0f172a; --radius:14px;
-      --shadow:0 12px 30px rgba(16,24,40,0.08);
-      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dream Donators</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        background: #f5f7fa;
+        color: #333;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,#f3f8ff,#eef6ff);color:var(--text)}
-    a{color:inherit}
-
-    /* NAV */
-    header{position:sticky;top:0;background:rgba(255,255,255,0.75);backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,0.04);}
-    .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
-    nav ul{display:flex;gap:14px;list-style:none;margin:0;padding:0}
-    nav a{padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:600;color:var(--muted)}
-    nav a:hover{color:var(--accent)}
-
-    /* HERO */
-    .hero{max-width:1100px;margin:36px auto;padding:28px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
-    .hero .kicker{background:rgba(37,99,235,0.09);padding:6px 10px;border-radius:999px;color:var(--accent);font-weight:700}
-    .hero h1{font-size:34px;margin:0;color:var(--accent)}
-    .hero p{max-width:820px;color:var(--muted);font-size:16px;line-height:1.6}
-    .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{background:var(--accent);color:#fff;padding:12px 18px;border-radius:12px;border:0;font-weight:700;cursor:pointer;box-shadow:0 8px 18px rgba(37,99,235,0.18);transition:transform .22s ease,box-shadow .22s}
-    .btn.secondary{background:#fff;color:var(--accent);border:2px solid rgba(37,99,235,0.12)}
-    .btn:hover{transform:translateY(-4px)}
-
-    /* PANELS */
-    .panels{max-width:1100px;margin:18px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0 20px}
-    .panel{background:var(--panel);padding:18px;border-radius:14px;box-shadow:var(--shadow);text-align:left}
-    .panel h3{margin:0 0 8px;color:var(--accent)}
-    .muted{color:var(--muted)}
-
-    /* SIMPLE FORM PREVIEW */
-    .preview-form{display:flex;flex-direction:column;gap:8px}
-    .preview-form input, .preview-form select{padding:10px;border-radius:10px;border:1px solid #e6eef8}
-
-    /* DONOR WALL */
-    .wall{max-width:1100px;margin:22px auto;padding:0 20px}
-    .donor-list{display:flex;flex-direction:column;gap:10px}
-    .donor{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:0 4px 10px rgba(12,18,39,0.04)}
-    .avatar{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,#60a5fa,#93c5fd);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
-
-    /* ABOUT / CONTACT */
-    .about, .contact{max-width:900px;margin:22px auto;padding:0 20px}
-    .card{background:var(--panel);padding:20px;border-radius:12px;box-shadow:var(--shadow)}
-
-    /* RESPONSIVE */
-    @media(max-width:920px){.panels{grid-template-columns:1fr}.hero h1{font-size:28px}}
-
-    /* ANIMATIONS */
-    .fade-in{animation:fadeInUp .9s ease both}
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-
-    footer{margin:40px 0 80px;text-align:center;color:var(--muted)}
-  </style>
+    nav {
+        background: #4a6cf7;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 22px;
+        font-weight: 600;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-weight: 400;
+        cursor: pointer;
+    }
+    section {
+        display: none;
+        padding: 40px;
+        animation: fade 0.6s ease;
+    }
+    @keyframes fade {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .active {
+        display: block;
+    }
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        max-width: 600px;
+        margin: 40px auto;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+    button {
+        background: #4a6cf7;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 10px;
+        margin-top: 15px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+    }
+    .admin-table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+    .admin-table th, .admin-table td {
+        border: 1px solid #ccc;
+        padding: 12px;
+        background: white;
+    }
+</style>
 </head>
+
 <body>
-  <header>
-    <div class="nav">
-      <div class="brand"><div class="logo">DD</div><div><strong>Dream Donators</strong><div style="font-size:12px;color:var(--muted)">By GCC Media</div></div></div>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="donate.html">Become a Donator</a></li>
-          <li><a href="help.html">Ask for Help</a></li>
-          <li><a href="admin.html">Admin</a></li>
-        </ul>
-      </nav>
+
+<nav>
+    Dream Donators
+    <br>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('donate')">Donate</a>
+    <a onclick="showPage('help')">Request Help</a>
+    <a onclick="showPage('admin')">Admin</a>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+    <div class="card">
+        <h2>Welcome to Dream Donators</h2>
+        <p>We help students in Sri Lanka who need uniforms, books, shoes & bags.</p>
+        <p>Together we can make a difference ❤️</p>
     </div>
-  </header>
+</section>
 
-  <main>
-    <section class="hero fade-in" id="home">
-      <div class="kicker">Community • Transparency • Education</div>
-      <h1>Help a Sri Lankan child walk into school with confidence</h1>
-      <p>We collect and distribute school uniforms, books, shoes and bags to students affected by the pandemic. Join our community of Dream Donators — every item matters.</p>
-      <div class="actions">
-        <a class="btn" href="donate.html">Become a Donator</a>
-        <a class="btn secondary" href="help.html">Request Help (Students)</a>
-      </div>
-    </section>
+<!-- DONATE -->
+<section id="donate">
+    <div class="card">
+        <h2>Register as a Donator</h2>
+        <input id="donatorName" placeholder="Full Name">
+        <input id="donatorPhone" placeholder="Phone Number">
+        <input id="donatorItem" placeholder="What can you donate?">
+        <button onclick="saveDonator()">Submit</button>
+    </div>
+</section>
 
-    <section class="panels">
-      <div class="panel fade-in">
-        <h3>How it works</h3>
-        <p class="muted">Donators register their item donations. Students in need submit a help request. Administrators match items to requests and coordinate delivery.</p>
-      </div>
-      <div class="panel fade-in">
-        <h3>Who we help</h3>
-        <p class="muted">Primary & secondary students across schools in Sri Lanka, prioritising the most vulnerable communities affected by recent crises.</p>
-      </div>
-      <div class="panel fade-in">
-        <h3>Transparency</h3>
-        <p class="muted">We publish anonymized monthly reports and photos. Admins can export donor and request lists for accountability.</p>
-      </div>
-    </section>
+<!-- HELP -->
+<section id="help">
+    <div class="card">
+        <h2>Students – Request Help</h2>
+        <input id="studentName" placeholder="Student Name">
+        <input id="studentSchool" placeholder="School">
+        <textarea id="studentNeed" placeholder="Explain what you need"></textarea>
+        <button onclick="saveHelp()">Submit</button>
+    </div>
+</section>
 
-    <section class="wall">
-      <div class="card fade-in">
-        <h3 style="margin:0 0 10px">Recent Donators</h3>
-        <div id="publicWall" class="donor-list">
-          <!-- Filled by JS -->
-        </div>
-      </div>
-    </section>
+<!-- ADMIN LOGIN -->
+<section id="admin">
+    <div class="card">
+        <h2>Admin Login</h2>
+        <input id="adminUser" placeholder="Username">
+        <input id="adminPass" type="password" placeholder="Password">
+        <button onclick="adminLogin()">Login</button>
+    </div>
+</section>
 
-    <section class="about">
-      <div class="card fade-in">
-        <h3>About Our Mission</h3>
-        <p class="muted">Our mission is to empower students across Sri Lanka by providing essential school supplies and support. We ensure each child has the opportunity to learn and thrive — donations are tracked and distributed by our team of volunteers.</p>
-      </div>
-    </section>
+<!-- ADMIN DASHBOARD -->
+<section id="dashboard">
+    <div class="card">
+        <h2>Admin Dashboard</h2>
+        <p>Only visible to admin.</p>
 
-    <section class="contact">
-      <div class="card fade-in">
-        <h3>Contact</h3>
-        <p class="muted">Phone: +94 77 123 4567 • Email: contact@dreamdonators.lk</p>
-      </div>
-    </section>
+        <h3>Donators</h3>
+        <table class="admin-table" id="donatorsTable"></table>
 
-  </main>
+        <h3>Students Requesting Help</h3>
+        <table class="admin-table" id="helpTable"></table>
+    </div>
+</section>
 
-  <footer>
-    © Dream Donators — By GCC Media
-  </footer>
+<!-- Firebase -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs } 
+        from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-  <script>
-    // Small client-side demo storage for donor wall (will be replaced by Firebase when you add firebase.js)
-    const DEMO_DONORS = [
-      {name:'Nalika P.', type:'Uniforms', to:'Colombo'},
-      {name:'Kumar R.', type:'Books', to:'Galle'},
-      {name:'Saman L.', type:'Shoes', to:'Kandy'}
-    ];
+    const firebaseConfig = {
+        apiKey: "AIzaSyAVUIIwFXEsOmOS96lifn_aEccV3I35bWU",
+        authDomain: "dream-donators.firebaseapp.com",
+        projectId: "dream-donators",
+        storageBucket: "dream-donators.firebasestorage.app",
+        messagingSenderId: "943510265596",
+        appId: "1:943510265596:web:25e49411973c046bf50179",
+        measurementId: "G-KJ1WWR3TJH"
+    };
 
-    function renderDemoWall(){
-      const wall = document.getElementById('publicWall');
-      wall.innerHTML = '';
-      DEMO_DONORS.forEach(d => {
-        const el = document.createElement('div'); el.className='donor';
-        el.innerHTML = `<div class="avatar">${escapeHTML(d.name.split(' ')[0].slice(0,2))}</div><div><strong>${escapeHTML(d.name)}</strong><div class="muted">${escapeHTML(d.type)} › ${escapeHTML(d.to)}</div></div>`;
-        wall.appendChild(el);
-      });
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Save Donator
+    window.saveDonator = async () => {
+        await addDoc(collection(db, "donators"), {
+            name: donatorName.value,
+            phone: donatorPhone.value,
+            item: donatorItem.value
+        });
+        alert("Thank you for donating!");
+    };
+
+    // Save Student Help Request
+    window.saveHelp = async () => {
+        await addDoc(collection(db, "students"), {
+            name: studentName.value,
+            school: studentSchool.value,
+            need: studentNeed.value
+        });
+        alert("Your request has been sent.");
+    };
+
+    // Admin Login
+    window.adminLogin = () => {
+        if (adminUser.value === "Hiran" && adminPass.value === "Hiran@6757") {
+            showPage("dashboard");
+            loadData();
+        } else {
+            alert("Invalid login!");
+        }
+    };
+
+    // Load Data into Dashboard
+    async function loadData() {
+        const donatorsSnap = await getDocs(collection(db, "donators"));
+        const helpSnap = await getDocs(collection(db, "students"));
+
+        let dHTML = "<tr><th>Name</th><th>Phone</th><th>Item</th></tr>";
+        donatorsSnap.forEach(doc => {
+            let x = doc.data();
+            dHTML += `<tr><td>${x.name}</td><td>${x.phone}</td><td>${x.item}</td></tr>`;
+        });
+        donatorsTable.innerHTML = dHTML;
+
+        let hHTML = "<tr><th>Name</th><th>School</th><th>Need</th></tr>";
+        helpSnap.forEach(doc => {
+            let x = doc.data();
+            hHTML += `<tr><td>${x.name}</td><td>${x.school}</td><td>${x.need}</td></tr>`;
+        });
+        helpTable.innerHTML = hHTML;
     }
 
-    function escapeHTML(s){ return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[c]); }
+</script>
 
-    renderDemoWall();
-  </script>
+<script>
+    function showPage(page) {
+        document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+        document.getElementById(page).classList.add("active");
+    }
+</script>
+
 </body>
 </html>
