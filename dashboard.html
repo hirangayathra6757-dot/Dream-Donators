@@ -1,0 +1,23 @@
+<script src="firebase.js"></script>
+
+<script type="module">
+import { onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+onValue(firebaseRef(firebaseDB, "donators/"), (snap) => {
+    let html = "";
+    snap.forEach(item => {
+        let d = item.val();
+        html += `<div class="box">${d.name} - ${d.phone} - ${d.email}<br>${d.msg}</div>`;
+    });
+    document.getElementById("donators").innerHTML = html;
+});
+
+onValue(firebaseRef(firebaseDB, "students/"), (snap) => {
+    let html = "";
+    snap.forEach(item => {
+        let d = item.val();
+        html += `<div class="box">${d.sname} - ${d.need}<br>${d.phone}</div>`;
+    });
+    document.getElementById("students").innerHTML = html;
+});
+</script>

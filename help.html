@@ -1,0 +1,13 @@
+<script>
+function saveStudent() {
+    const sname = document.getElementById("sname").value;
+    const pname = document.getElementById("pname").value;
+    const address = document.getElementById("address").value;
+    const phone = document.getElementById("phone").value;
+    const need = document.getElementById("need").value;
+
+    firebasePush(firebaseRef(firebaseDB, "students/"), {
+        sname, pname, address, phone, need, date: new Date().toString()
+    }).then(() => alert("Your request is submitted."));
+}
+</script>

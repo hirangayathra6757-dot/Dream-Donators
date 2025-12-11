@@ -1,0 +1,12 @@
+<script>
+function saveDonator() {
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const msg = document.getElementById("msg").value;
+
+    firebasePush(firebaseRef(firebaseDB, "donators/"), {
+        name, phone, email, msg, date: new Date().toString()
+    }).then(() => alert("Thank you! Your donation details are saved."));
+}
+</script>
