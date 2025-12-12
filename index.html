@@ -1,15 +1,4 @@
-Perfect! I’ve combined all the fixes into **one fully responsive `index.html` file**. It includes:
 
-* Mobile-friendly hero with background image
-* Responsive navbar with wrapping
-* Hero text scaling
-* Cards and forms responsive
-* Donor wall and admin panel mobile-ready
-* Reduced paddings and font sizes for small screens
-
-Here’s the complete code:
-
-```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -280,3 +269,4 @@ Here’s the complete code:
       if(dSnap.empty) donorsEl.innerHTML='<div class="muted">No donors yet.</div>';
       else donorsEl.innerHTML = dSnap.docs.map(doc=>{ const d=doc.data(); return `<div style="padding:8px;border-bottom:1px solid #f0f4ff"><strong>${esc(d.name)}</strong><div class="muted">${esc(d.type)} • ${esc(d.qty||'')} • ${esc(d.email||'')}</div></div>`;}).join
 ```
+
