@@ -172,6 +172,8 @@
   const db = getFirestore(app);
   const auth = getAuth(app);
 
+   document.getElementById('heroImg').style.backgroundImage = "url('https://share.google/images/5L3sliBwzMulltKaN')";
+
   // Utility: escape HTML
   function esc(s){ return String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[c]); }
 
@@ -312,3 +314,4 @@
 
 </body>
 </html>
+
