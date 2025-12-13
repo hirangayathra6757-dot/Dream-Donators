@@ -11,7 +11,10 @@
 
     header{position:sticky;top:0;padding:14px 20px;background:rgba(255,255,255,0.9);backdrop-filter:blur(10px);z-index:50}
     .nav{max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center}
-    .logo{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;color:white}
+
+    .logo{width:50px;height:50px;border-radius:15px;background:transparent;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .logo img{width:100%;height:100%;object-fit:contain}
+
     nav a{text-decoration:none;margin:6px 12px;font-weight:600;color:var(--text)}
 
     .hero{max-width:1200px;margin:30px auto;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;padding:0 20px}
@@ -22,7 +25,7 @@
     label{font-weight:600;font-size:14px}
     input,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #ddd;margin-top:6px;font-size:16px}
 
-    .btn{padding:12px 18px;border-radius:var(--radius);border:0;background:var(--accent);color:white;font-weight:700;cursor:pointer;width:fit-content}
+    .btn{padding:12px 18px;border-radius:var(--radius);border:0;background:var(--accent);color:white;font-weight:700;cursor:pointer}
     .btn:hover{background:var(--accent2)}
 
     .checkbox-group{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
@@ -38,23 +41,6 @@
       .hero h1{font-size:28px}
       .btn{width:100%}
     }
-    .logo{
-  width:50px;
-  height:50px;
-  border-radius:15px;
-  background:Transparent;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-.logo img{
-  width:80%;
-  height:80%;
-  object-fit:contain;
-}
-
   </style>
 </head>
 <body>
@@ -62,7 +48,10 @@
 <header>
   <div class="nav">
     <div style="display:flex;gap:10px;align-items:center">
-      <div class="logo"><IMG SRC="https://github.com/hirangayathra6757-dot/Dream-Donators/blob/main/ChatGPT_Image_Dec_13__2025__05_16_18_PM-removebg-preview.png?raw=true"></div><strong>Dream Donators</strong>
+      <div class="logo">
+        <img src="https://github.com/hirangayathra6757-dot/Dream-Donators/blob/main/ChatGPT_Image_Dec_13__2025__05_16_18_PM-removebg-preview.png?raw=true" alt="Dream Donators Logo">
+      </div>
+      <strong>Dream Donators</strong>
     </div>
     <nav>
       <a href="#home">Home</a>
@@ -88,9 +77,10 @@
     <h2>Make a Donation</h2>
     <form id="donationForm">
       <label>Full Name *</label><input id="name" required>
-       <label>NIC *</label><input id="NIC" required>
+      <label>NIC *</label><input id="NIC" required>
       <label>Email *</label><input id="email" required>
       <label>Phone *</label><input id="phone" required>
+
       <label>Donation Type *</label>
       <div class="checkbox-group">
         <label><input type="checkbox" value="Uniforms" class="donType"> Uniforms</label>
@@ -98,6 +88,7 @@
         <label><input type="checkbox" value="Shoes" class="donType"> Shoes</label>
         <label><input type="checkbox" value="Bags" class="donType"> Bags</label>
       </div>
+
       <label>Quantity / Details</label><input id="qty">
       <button class="btn" type="submit">Submit Donation</button>
       <div id="formMsg"></div>
@@ -151,10 +142,8 @@
 <section id="contact" style="max-width:900px;padding:0 20px;margin:auto">
   <div class="card">
     <h2>Contact Us</h2>
-    <p>If you would like to support this project or need more information, please contact us.</p>
     <p><strong>Organization:</strong> Dream Donators — By GCC Media</p>
     <p><strong>Email:</strong> dreamdonators@gmail.com</p>
-    <p><strong>Phone:</strong> +94 XX XXX XXXX</p>
     <p><strong>Location:</strong> Sri Lanka</p>
   </div>
 </section>
@@ -180,32 +169,33 @@ async function renderPublicWall(){
 }
 
 window.adminLogin=function(){
-  const u=adminUser.value,p=adminPass.value;
-  if(u==='Hiran'&&p==='Hiran@6757'){adminPanel.style.display='block';admin.style.display='none';loadAdmin();}
+  if(adminUser.value==='Hiran'&&adminPass.value==='Hiran@6757'){admin.style.display='none';adminPanel.style.display='block';loadAdmin();}
   else adminMsg.textContent='Invalid login';
 }
-
 window.logout=function(){adminPanel.style.display='none';admin.style.display='block'}
 
 async function loadAdmin(){
   const dSnap=await getDocs(collection(db,'donators'));
-  allDonors.innerHTML='';dSnap.forEach(d=>{const v=d.data();allDonors.innerHTML+=`<div>${esc(v.name)} - ${esc(v.type)}</div>`});
+  allDonors.innerHTML='';
+  dSnap.forEach(d=>{const v=d.data();allDonors.innerHTML+=`<div class="donor-item"><div class="avatar">${esc(v.name[0])}</div><div><strong>${esc(v.name)}</strong><br>NIC: ${esc(v.nic)}<br>Phone: ${esc(v.phone)}<br>${esc(v.type)}</div></div>`});
+
   const sSnap=await getDocs(collection(db,'students'));
-  allRequests.innerHTML='';sSnap.forEach(d=>{const v=d.data();allRequests.innerHTML+=`<div>${esc(v.sname)} - ${esc(v.need)}</div>`});
+  allRequests.innerHTML='';
+  sSnap.forEach(d=>{const v=d.data();allRequests.innerHTML+=`<div class="donor-item"><div class="avatar">S</div><div><strong>${esc(v.sname)}</strong><br>School: ${esc(v.school)}<br>Parent: ${esc(v.parentName)}<br>NIC: ${esc(v.parentNIC)}<br>Need: ${esc(v.need)}</div></div>`});
 }
 
-donationForm.addEventListener('submit',async e=>{e.preventDefault();const types=[...document.querySelectorAll('.donType:checked')].map(x=>x.value).join(', ');await addDoc(collection(db,'donators'),{name:name.value,email:email.value,phone:phone.value,type:types,qty:qty.value,date:new Date()});formMsg.textContent='Saved';donationForm.reset();renderPublicWall();});
+donationForm.addEventListener('submit',async e=>{e.preventDefault();
+  const types=[...document.querySelectorAll('.donType:checked')].map(x=>x.value).join(', ');
+  await addDoc(collection(db,'donators'),{name:name.value,nic:NIC.value,email:email.value,phone:phone.value,type:types,qty:qty.value,date:new Date()});
+  formMsg.textContent='Donation saved';donationForm.reset();renderPublicWall();
+});
 
-helpForm.addEventListener('submit',async e=>{e.preventDefault();await addDoc(collection(db,'students'),{sname:sname.value,school:school.value,district:sdistrict.value,parentName:parentName.value,parentPhone:parentPhone.value,need:need.value,date:new Date()});helpMsg.textContent='Request sent';helpForm.reset();});
+helpForm.addEventListener('submit',async e=>{e.preventDefault();
+  await addDoc(collection(db,'students'),{sname:sname.value,school:school.value,district:sdistrict.value,parentName:parentName.value,parentPhone:parentPhone.value,parentNIC:parentNIC.value,need:need.value,date:new Date()});
+  helpMsg.textContent='Request sent';helpForm.reset();
+});
 
 renderPublicWall();
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
